@@ -1,12 +1,23 @@
-<h1>{{ question.question_text }}</h1>
+{% load static %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-<form action="{% url 'polls:vote' question.id %}" method="post">
-{% csrf_token %}
-{% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-{% endfor %}
-<input type="submit" value="Vote">
-</form>
+<h1>Polls Application</h1>
+<div class="page">
+    <h2>{{ question.question_text }}</h2>
+
+    {% if error_message %}<p id="error_message"><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <div class="radio">
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+        </div>
+    {% endfor %}
+    <input type="submit" value="Vote">
+    </form >
+</div>

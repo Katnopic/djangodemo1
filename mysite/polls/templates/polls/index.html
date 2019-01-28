@@ -1,13 +1,17 @@
 {% load static %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-{% if latest_question_list %}
-    <ul>
+<div class="page">
+    {% if latest_question_list %}
+    <h1>Polls Application</h1>
+    <ul class="list-group">
     {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <li class="list-group-item"><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+</div>
