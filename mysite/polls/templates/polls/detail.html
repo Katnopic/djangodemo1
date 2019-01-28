@@ -1,10 +1,6 @@
-{% load static %}
+{% extends 'polls/base.html' %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-<h1>Polls Application</h1>
-<div class="page">
+{% block content %}
     <h2>{{ question.question_text }}</h2>
 
     {% if error_message %}<p id="error_message"><strong>{{ error_message }}</strong></p>{% endif %}
@@ -20,4 +16,4 @@
     {% endfor %}
     <input type="submit" value="Vote">
     </form >
-</div>
+{% endblock %}
