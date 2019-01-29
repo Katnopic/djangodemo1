@@ -25,6 +25,9 @@ class DetailView(generic.DetailView):
         """
         return Question.objects.filter(pub_date__lte=timezone.now())
 
+def add_page(request):
+    return render(request,'polls/add.html')
+
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
@@ -66,3 +69,6 @@ def vote(request,question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results',args=(question_id,)))
         #return render(request,'polls/results',{'question_id':question_id})
+
+def add_question(request):
+    return HttpResponseRedirect(reverse('polls:index'))

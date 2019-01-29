@@ -1,0 +1,15 @@
+{% extends 'polls/base.html' %}
+{% load static %}
+
+{% block content %}
+    <form action="{% url 'polls:add_question' %}" method="post">
+        Question:<br>
+        <input type="text" name="question"><br>
+        Add Choices to the question:<br>
+        <input type="text" id="txt_choice"/>
+        <input type="button" value="Add choice" id="add_choice" onclick="AddChoiceToList()">
+        <ul id="choices_list"></ul>
+        <input type="submit" value="Confirm">
+    </form>
+    <script src="{% static 'polls/js/add_choice_to_list.js' %}"></script>
+{% endblock %}
