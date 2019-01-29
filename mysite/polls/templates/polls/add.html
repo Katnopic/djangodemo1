@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-    <form action="{% url 'polls:add_question' %}" method="post">
+    <form name="question_form" action="{% url 'polls:add_question' %}" onsubmit="return ValidateForm()" method="post">
+        {% csrf_token %}
         Question:<br>
         <input type="text" name="question"><br>
         Add Choices to the question:<br>
@@ -12,4 +13,6 @@
         <input type="submit" value="Confirm">
     </form>
     <script src="{% static 'polls/js/add_choice_to_list.js' %}"></script>
+    <script src="{% static 'polls/js/validate_form.js' %}"></script>
+
 {% endblock %}
